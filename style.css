@@ -99,10 +99,10 @@ body {
         /* 2. Degradado oscuro de abajo hacia arriba para que se funda con la sección de abajo */
         linear-gradient(to top, var(--bg-dark) 0%, transparent 15%),
         /* 3. La imagen de fondo (puedes cambiar 'p-17.jpeg' por 'pp-06.png' si prefieres otra) */
-        url('images/p-17.jpeg');
+        url('images/pp-01.png');
         
     /* Ajustes para que la imagen se vea increíble en el lado derecho */
-    background-position: right center; /* Alinea la foto a la derecha */
+    background-position: top center; /* Alinea la foto a la derecha */
     background-size: cover; /* Asegura que cubra todo el espacio sin deformarse */
     background-repeat: no-repeat;
 }
