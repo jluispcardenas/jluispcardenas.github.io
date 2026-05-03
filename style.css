@@ -81,20 +81,37 @@ body {
 /* =========================================
    HERO SECTION (Cabecera Cinematográfica)
    ========================================= */
+/* =========================================
+   HERO SECTION (Cabecera Cinematográfica)
+   ========================================= */
 .hero {
     height: 75vh;
     display: flex;
     align-items: center;
     padding: 0 4%;
-    /* Un degradado oscuro que se funde con un destello violeta sutil */
-    background: radial-gradient(circle at 70% 30%, #3b0764 0%, var(--bg-dark) 50%);
     position: relative;
     border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    
+    /* Aquí está la magia del difuminado estilo película */
+    background-image: 
+        /* 1. Degradado oscuro de izquierda a derecha para que el texto se lea perfectamente */
+        linear-gradient(to right, var(--bg-dark) 20%, rgba(26, 29, 41, 0.8) 55%, transparent 100%),
+        /* 2. Degradado oscuro de abajo hacia arriba para que se funda con la sección de abajo */
+        linear-gradient(to top, var(--bg-dark) 0%, transparent 15%),
+        /* 3. La imagen de fondo (puedes cambiar 'p-17.jpeg' por 'pp-06.png' si prefieres otra) */
+        url('images/p-17.jpeg');
+        
+    /* Ajustes para que la imagen se vea increíble en el lado derecho */
+    background-position: right center; /* Alinea la foto a la derecha */
+    background-size: cover; /* Asegura que cubra todo el espacio sin deformarse */
+    background-repeat: no-repeat;
 }
 
 .hero-content {
     max-width: 600px;
     z-index: 2;
+    /* Un pequeño empujón para separarlo del borde izquierdo en pantallas grandes */
+    margin-left: 2%; 
 }
 
 .badge {
