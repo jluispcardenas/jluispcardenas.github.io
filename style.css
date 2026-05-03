@@ -1,228 +1,332 @@
-/* Paleta de colores inspirada en My Little Pony */
+/* =========================================
+   VARIABLES PREMIUM Y PALETA MÁGICA
+   ========================================= */
 :root {
-    --primary-pink: #ff69b4; /* Rosa brillante */
-    --secondary-purple: #dda0dd; /* Morado claro */
-    --accent-blue: #add8e6; /* Azul cielo */
-    --background-pastel: #fff0f5; /* Rosa claro muy suave */
-    --text-color: #4a4a4a;
-    --white: #ffffff;
-    --gold: #ffd700;
+    --twilight-purple: #9b5de5;
+    --pinkie-pink: #ff69b4;
+    --rainbow-blue: #00f5d4;
+    --flutter-yellow: #f1c40f;
+    --glass-bg: rgba(255, 255, 255, 0.5);
+    --glass-border: rgba(255, 255, 255, 0.7);
+    --text-dark: #2d3436;
+    --text-light: #636e72;
+}
+
+/* =========================================
+   RESETEO Y BASE
+   ========================================= */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-    font-family: 'Comic Sans MS', 'Cursive', sans-serif; /* Fuente lúdica */
-    background: linear-gradient(to bottom, var(--background-pastel) 0%, var(--white) 100%);
-    margin: 0;
-    color: var(--text-color);
-    line-height: 1.6;
+    font-family: 'Nunito', sans-serif;
+    color: var(--text-dark);
+    /* Fondo animado de ensueño */
+    background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #ffc3a0, #ffafbd);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    min-height: 100vh;
+    overflow-x: hidden;
 }
 
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+h1, h2, h3 {
+    font-family: 'Fredoka', sans-serif;
+    letter-spacing: 0.5px;
+}
+
+/* =========================================
+   ENCABEZADO PROFESIONAL (GLASSMORPHISM)
+   ========================================= */
 header {
-    background: linear-gradient(135deg, var(--secondary-purple) 0%, var(--primary-pink) 100%);
-    padding: 40px 20px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--glass-border);
+    padding: 3rem 1rem;
     text-align: center;
-    border-bottom: 5px solid var(--accent-blue);
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
 }
 
 .logo-title {
-    color: var(--white);
-    font-size: 3rem;
-    margin: 0;
-    text-shadow: 3px 3px 0 var(--text-color), -1px -1px 0 var(--white); /* Efecto de purpurina */
+    font-size: 3.5rem;
+    /* Texto con degradado de My Little Pony */
+    background: linear-gradient(to right, var(--twilight-purple), var(--pinkie-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
+    margin-bottom: 0.5rem;
 }
 
 .subtitle {
-    color: var(--white);
     font-size: 1.2rem;
-    margin-top: 10px;
+    color: var(--text-light);
+    font-weight: 700;
 }
 
+/* =========================================
+   CONTENEDOR PRINCIPAL
+   ========================================= */
 main {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px;
+    padding: 2rem;
 }
 
-h2 {
-    color: var(--primary-pink);
-    border-bottom: 2px dashed var(--accent-blue);
+section {
+    margin-bottom: 5rem;
+    text-align: center;
+}
+
+section h2 {
+    font-size: 2.5rem;
+    color: var(--twilight-purple);
+    margin-bottom: 0.5rem;
+    position: relative;
     display: inline-block;
-    padding-bottom: 5px;
-    margin-top: 40px;
 }
 
-p {
-    margin-bottom: 20px;
+/* Subrayado mágico para los títulos */
+section h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 10%;
+    width: 80%;
+    height: 4px;
+    background: linear-gradient(90deg, transparent, var(--pinkie-pink), transparent);
+    border-radius: 2px;
 }
 
-/* Sección de Galería */
+section > p {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* =========================================
+   GALERÍA DE FOTOS (TARJETAS PREMIUM)
+   ========================================= */
 .photo-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 30px;
-    margin-top: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem;
 }
 
 .photo-card {
-    background: var(--white);
-    border-radius: 20px;
-    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    text-align: left;
-    margin: 0;
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 24px;
+    padding: 1rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    display: flex;
+    flex-direction: column;
 }
 
 .photo-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
 }
 
 .photo-frame {
-    width: 100%;
-    position: relative;
+    border-radius: 18px;
     overflow: hidden;
+    position: relative;
+    aspect-ratio: 1 / 1;
+    margin-bottom: 1rem;
 }
 
 .photo-frame img {
     width: 100%;
-    height: 300px;
-    object-fit: cover; /* Recorta la foto para que encaje */
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
 }
 
-/* Marcos con forma */
-.star-frame::after {
-    content: '';
-    position: absolute;
-    top: 5px; right: 5px; bottom: 5px; left: 5px;
-    border: 5px dashed var(--gold);
-    border-radius: 50%;
-    pointer-events: none;
+.photo-card:hover .photo-frame img {
+    transform: scale(1.08); /* Ligero zoom al pasar el ratón */
 }
 
-.heart-frame::after {
-    content: '';
-    position: absolute;
-    top: 5px; right: 5px; bottom: 5px; left: 5px;
-    border: 5px solid var(--primary-pink);
-    border-radius: 20px;
-    pointer-events: none;
+/* Marcos Mágicos Personalizados */
+.star-frame {
+    padding: 6px;
+    background: linear-gradient(45deg, var(--flutter-yellow), var(--pinkie-pink));
+}
+
+.heart-frame {
+    padding: 6px;
+    background: linear-gradient(45deg, var(--pinkie-pink), var(--twilight-purple));
 }
 
 .magic-frame {
-    position: relative;
-    animation: glow-animation 2s infinite alternate;
+    padding: 6px;
+    background: linear-gradient(45deg, var(--rainbow-blue), var(--twilight-purple));
+    animation: borderPulse 3s infinite alternate;
 }
 
-@keyframes glow-animation {
-    0% {
-        box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
-    }
-    100% {
-        box-shadow: 0 0 20px rgba(173, 216, 230, 1);
-    }
+@keyframes borderPulse {
+    0% { filter: hue-rotate(0deg); }
+    100% { filter: hue-rotate(30deg); }
 }
 
 figcaption {
-    padding: 15px;
-    font-size: 0.95rem;
+    padding: 0.5rem;
+    font-size: 1.05rem;
+    font-weight: 500;
+    line-height: 1.5;
 }
 
 .pony-name {
-    color: var(--primary-pink);
-    font-weight: bold;
+    color: var(--twilight-purple);
+    font-weight: 700;
+    font-size: 1.1rem;
     display: block;
-    margin-bottom: 5px;
+    margin-bottom: 4px;
 }
 
-/* Sección de Personajes fakes */
+/* =========================================
+   SECCIÓN DE PERSONAJES (FLOTANTES)
+   ========================================= */
 .pony-flex {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 20px;
+    gap: 2rem;
 }
 
 .pony-card {
-    background: var(--white);
-    border-radius: 20px;
-    border: 3px solid var(--accent-blue);
-    padding: 20px;
-    width: 250px;
+    background: #ffffff;
+    border-radius: 30px;
+    padding: 2rem 1.5rem;
+    width: 280px;
     text-align: center;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.pony-card:hover {
+    transform: translateY(-8px);
+    border-color: var(--pinkie-pink);
 }
 
 .pony-card img {
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
-    margin-bottom: 10px;
-    border: 5px solid var(--secondary-purple);
+    object-fit: cover;
+    margin-bottom: 1rem;
+    border: 4px solid var(--glass-bg);
+    box-shadow: 0 8px 20px rgba(155, 93, 229, 0.2);
 }
 
 .pony-card h3 {
-    color: var(--secondary-purple);
-    margin-top: 0;
+    color: var(--pinkie-pink);
+    font-size: 1.4rem;
+    margin-bottom: 0.5rem;
 }
 
-/* Botón Mágico */
-.activities {
-    text-align: center;
-    margin-top: 50px;
-}
-
+/* =========================================
+   ACTIVIDADES Y BOTÓN MÁGICO PRO
+   ========================================= */
 .activity-card {
-    background: linear-gradient(to right, var(--accent-blue) 0%, var(--secondary-purple) 100%);
-    padding: 30px;
-    border-radius: 30px;
-    color: var(--white);
-    border: 3px solid var(--white);
+    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 4rem 2rem;
+    border-radius: 40px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
+}
+
+.activity-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
 }
 
 .magic-button {
-    background: var(--primary-pink);
-    color: var(--white);
+    background: linear-gradient(45deg, var(--pinkie-pink), var(--twilight-purple), var(--rainbow-blue));
+    background-size: 200% auto;
+    color: white;
     border: none;
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    font-family: 'Comic Sans MS', cursive, sans-serif;
-    border-radius: 30px;
+    padding: 1rem 3rem;
+    font-size: 1.5rem;
+    font-family: 'Fredoka', sans-serif;
+    border-radius: 50px;
     cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    transition: background 0.3s ease, transform 0.1s ease;
-    margin-top: 20px;
+    box-shadow: 0 10px 20px rgba(155, 93, 229, 0.3);
+    transition: 0.5s;
+    margin-top: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 .magic-button:hover {
-    background: var(--secondary-purple);
+    background-position: right center;
+    box-shadow: 0 15px 30px rgba(155, 93, 229, 0.5);
+    transform: scale(1.05);
 }
 
 .magic-button:active {
-    transform: translateY(2px);
+    transform: scale(0.95);
 }
 
+/* =========================================
+   FOOTER
+   ========================================= */
 footer {
-    background-color: var(--background-pastel);
-    padding: 20px;
     text-align: center;
-    margin-top: 50px;
-    border-top: 2px dashed var(--accent-blue);
-    font-size: 0.9rem;
+    padding: 3rem 1rem;
+    color: var(--text-light);
+    font-weight: 700;
+    background: var(--glass-bg);
+    border-top: 1px solid var(--glass-border);
 }
 
-/* Responsividad */
+/* =========================================
+   BARRA DE DESPLAZAMIENTO (SCROLLBAR)
+   ========================================= */
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--pinkie-pink);
+    border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: var(--twilight-purple);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN (MÓVILES)
+   ========================================= */
 @media (max-width: 768px) {
     .logo-title {
-        font-size: 2.2rem;
+        font-size: 2.5rem;
+    }
+    section h2 {
+        font-size: 2rem;
     }
     .photo-grid {
         grid-template-columns: 1fr;
     }
-    .pony-flex {
-        flex-direction: column;
-        align-items: center;
-    }
-    .pony-card {
-        width: 100%;
-        max-width: 300px;
+    .activity-card {
+        padding: 2rem 1rem;
     }
 }
