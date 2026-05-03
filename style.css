@@ -1,332 +1,274 @@
 /* =========================================
-   VARIABLES PREMIUM Y PALETA MÁGICA
+   VARIABLES PREMIUM (Disney+ x My Little Pony)
    ========================================= */
 :root {
-    --twilight-purple: #9b5de5;
-    --pinkie-pink: #ff69b4;
-    --rainbow-blue: #00f5d4;
-    --flutter-yellow: #f1c40f;
-    --glass-bg: rgba(255, 255, 255, 0.5);
-    --glass-border: rgba(255, 255, 255, 0.7);
-    --text-dark: #2d3436;
-    --text-light: #636e72;
+    --bg-dark: #1a1d29; /* Fondo clásico de plataforma streaming */
+    --bg-nav: #0f111a;
+    --text-main: #f9f9f9;
+    --text-muted: #cacaca;
+    
+    /* Colores mágicos neón */
+    --pony-pink: #ec4899;
+    --pony-purple: #8b5cf6;
+    --pony-cyan: #06b6d4;
+    
+    --card-bg: #252833;
+    --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 /* =========================================
-   RESETEO Y BASE
+   RESETEO
    ========================================= */
 * {
-    box-sizing: border-box;
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-    font-family: 'Nunito', sans-serif;
-    color: var(--text-dark);
-    /* Fondo animado de ensueño */
-    background: linear-gradient(-45deg, #fbc2eb, #a6c1ee, #ffc3a0, #ffafbd);
-    background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
-    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
     overflow-x: hidden;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
-
-h1, h2, h3 {
-    font-family: 'Fredoka', sans-serif;
-    letter-spacing: 0.5px;
-}
-
 /* =========================================
-   ENCABEZADO PROFESIONAL (GLASSMORPHISM)
+   NAVBAR (Estilo App)
    ========================================= */
-header {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--glass-border);
-    padding: 3rem 1rem;
-    text-align: center;
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.1);
-    position: sticky;
+.navbar {
+    position: fixed;
     top: 0;
-    z-index: 100;
-}
-
-.logo-title {
-    font-size: 3.5rem;
-    /* Texto con degradado de My Little Pony */
-    background: linear-gradient(to right, var(--twilight-purple), var(--pinkie-pink));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
-    margin-bottom: 0.5rem;
-}
-
-.subtitle {
-    font-size: 1.2rem;
-    color: var(--text-light);
-    font-weight: 700;
-}
-
-/* =========================================
-   CONTENEDOR PRINCIPAL
-   ========================================= */
-main {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 2rem;
-}
-
-section {
-    margin-bottom: 5rem;
-    text-align: center;
-}
-
-section h2 {
-    font-size: 2.5rem;
-    color: var(--twilight-purple);
-    margin-bottom: 0.5rem;
-    position: relative;
-    display: inline-block;
-}
-
-/* Subrayado mágico para los títulos */
-section h2::after {
-    content: '';
-    position: absolute;
-    bottom: -5px;
-    left: 10%;
-    width: 80%;
-    height: 4px;
-    background: linear-gradient(90deg, transparent, var(--pinkie-pink), transparent);
-    border-radius: 2px;
-}
-
-section > p {
-    color: var(--text-light);
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
-}
-
-/* =========================================
-   GALERÍA DE FOTOS (TARJETAS PREMIUM)
-   ========================================= */
-.photo-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
-    padding: 1rem;
-}
-
-.photo-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(10px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 1rem;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
-    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    display: flex;
-    flex-direction: column;
-}
-
-.photo-card:hover {
-    transform: translateY(-10px) scale(1.02);
-    box-shadow: 0 20px 40px rgba(255, 105, 180, 0.2);
-}
-
-.photo-frame {
-    border-radius: 18px;
-    overflow: hidden;
-    position: relative;
-    aspect-ratio: 1 / 1;
-    margin-bottom: 1rem;
-}
-
-.photo-frame img {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.photo-card:hover .photo-frame img {
-    transform: scale(1.08); /* Ligero zoom al pasar el ratón */
-}
-
-/* Marcos Mágicos Personalizados */
-.star-frame {
-    padding: 6px;
-    background: linear-gradient(45deg, var(--flutter-yellow), var(--pinkie-pink));
-}
-
-.heart-frame {
-    padding: 6px;
-    background: linear-gradient(45deg, var(--pinkie-pink), var(--twilight-purple));
-}
-
-.magic-frame {
-    padding: 6px;
-    background: linear-gradient(45deg, var(--rainbow-blue), var(--twilight-purple));
-    animation: borderPulse 3s infinite alternate;
-}
-
-@keyframes borderPulse {
-    0% { filter: hue-rotate(0deg); }
-    100% { filter: hue-rotate(30deg); }
-}
-
-figcaption {
-    padding: 0.5rem;
-    font-size: 1.05rem;
-    font-weight: 500;
-    line-height: 1.5;
-}
-
-.pony-name {
-    color: var(--twilight-purple);
-    font-weight: 700;
-    font-size: 1.1rem;
-    display: block;
-    margin-bottom: 4px;
-}
-
-/* =========================================
-   SECCIÓN DE PERSONAJES (FLOTANTES)
-   ========================================= */
-.pony-flex {
+    padding: 1.5rem 4%;
     display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
+    align-items: center;
+    background: linear-gradient(to bottom, rgba(15, 17, 26, 0.9), transparent);
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    margin-right: 3rem;
+}
+
+.logo span {
+    color: var(--pony-cyan);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
     gap: 2rem;
 }
 
-.pony-card {
-    background: #ffffff;
-    border-radius: 30px;
-    padding: 2rem 1.5rem;
-    width: 280px;
-    text-align: center;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.05);
-    transition: transform 0.3s ease;
-    border: 2px solid transparent;
-}
-
-.pony-card:hover {
-    transform: translateY(-8px);
-    border-color: var(--pinkie-pink);
-}
-
-.pony-card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    object-fit: cover;
-    margin-bottom: 1rem;
-    border: 4px solid var(--glass-bg);
-    box-shadow: 0 8px 20px rgba(155, 93, 229, 0.2);
-}
-
-.pony-card h3 {
-    color: var(--pinkie-pink);
-    font-size: 1.4rem;
-    margin-bottom: 0.5rem;
-}
-
-/* =========================================
-   ACTIVIDADES Y BOTÓN MÁGICO PRO
-   ========================================= */
-.activity-card {
-    background: linear-gradient(135deg, rgba(255,255,255,0.8), rgba(255,255,255,0.4));
-    backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    padding: 4rem 2rem;
-    border-radius: 40px;
-    box-shadow: 0 20px 40px rgba(0,0,0,0.05);
-}
-
-.activity-card h2 {
-    font-size: 2.5rem;
-    margin-bottom: 1rem;
-}
-
-.magic-button {
-    background: linear-gradient(45deg, var(--pinkie-pink), var(--twilight-purple), var(--rainbow-blue));
-    background-size: 200% auto;
-    color: white;
-    border: none;
-    padding: 1rem 3rem;
-    font-size: 1.5rem;
-    font-family: 'Fredoka', sans-serif;
-    border-radius: 50px;
-    cursor: pointer;
-    box-shadow: 0 10px 20px rgba(155, 93, 229, 0.3);
-    transition: 0.5s;
-    margin-top: 1.5rem;
+.nav-links a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: var(--transition);
     text-transform: uppercase;
     letter-spacing: 1px;
 }
 
-.magic-button:hover {
-    background-position: right center;
-    box-shadow: 0 15px 30px rgba(155, 93, 229, 0.5);
+.nav-links a:hover {
+    color: var(--text-main);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+/* =========================================
+   HERO SECTION (Cabecera Cinematográfica)
+   ========================================= */
+.hero {
+    height: 75vh;
+    display: flex;
+    align-items: center;
+    padding: 0 4%;
+    /* Un degradado oscuro que se funde con un destello violeta sutil */
+    background: radial-gradient(circle at 70% 30%, #3b0764 0%, var(--bg-dark) 50%);
+    position: relative;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.hero-content {
+    max-width: 600px;
+    z-index: 2;
+}
+
+.badge {
+    color: var(--pony-cyan);
+    font-size: 0.8rem;
+    letter-spacing: 3px;
+    margin-bottom: 1rem;
+}
+
+.title-gradient {
+    font-size: 4rem;
+    font-weight: 900;
+    line-height: 1.1;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(to right, var(--pony-purple), var(--pony-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 4px 10px rgba(139, 92, 246, 0.3));
+}
+
+.hero p {
+    font-size: 1.1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+button {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 700;
+    font-size: 1rem;
+    padding: 0.8rem 2rem;
+    border-radius: 4px;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.btn-play {
+    background-color: var(--text-main);
+    color: #000;
+}
+
+.btn-play:hover {
+    background-color: rgba(255, 255, 255, 0.8);
     transform: scale(1.05);
 }
 
-.magic-button:active {
-    transform: scale(0.95);
+.btn-secondary {
+    background-color: rgba(255, 255, 255, 0.2);
+    color: var(--text-main);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-color: var(--text-main);
 }
 
 /* =========================================
-   FOOTER
+   TARJETAS ESTILO DISNEY+
    ========================================= */
-footer {
-    text-align: center;
-    padding: 3rem 1rem;
-    color: var(--text-light);
-    font-weight: 700;
-    background: var(--glass-bg);
-    border-top: 1px solid var(--glass-border);
+main {
+    padding: 2rem 4%;
+}
+
+.slider-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    /* Borde invisible que brillará al hacer hover */
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+    transition: var(--transition);
+}
+
+.card-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9; /* Formato apaisado cinemático */
+    overflow: hidden;
+}
+
+.card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top; /* Ajusta el encuadre de la foto */
+    transition: var(--transition);
+}
+
+/* Degradado interior para que el texto sea legible */
+.card-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 70%;
+    background: linear-gradient(to top, rgba(37, 40, 51, 1), transparent);
+}
+
+.card-info {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    padding: 1.5rem;
+    width: 100%;
+    transform: translateY(20px);
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.card-info h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+}
+
+.card-info p {
+    font-size: 0.85rem;
+    color: var(--pony-cyan);
+    font-weight: 500;
+}
+
+/* Efectos mágicos al pasar el ratón (Hover) */
+.card:hover {
+    transform: scale(1.05) translateY(-5px);
+    border-color: var(--text-main);
+    box-shadow: 0 15px 30px rgba(139, 92, 246, 0.4); /* Resplandor morado */
+    z-index: 10;
+}
+
+.card:hover .card-image img {
+    transform: scale(1.08); /* Ligero zoom in de la imagen */
+}
+
+.card:hover .card-info {
+    transform: translateY(0);
+    opacity: 1;
 }
 
 /* =========================================
-   BARRA DE DESPLAZAMIENTO (SCROLLBAR)
-   ========================================= */
-::-webkit-scrollbar {
-    width: 12px;
-}
-::-webkit-scrollbar-track {
-    background: #f1f1f1;
-}
-::-webkit-scrollbar-thumb {
-    background: var(--pinkie-pink);
-    border-radius: 10px;
-}
-::-webkit-scrollbar-thumb:hover {
-    background: var(--twilight-purple);
-}
-
-/* =========================================
-   RESPONSIVE DESIGN (MÓVILES)
+   RESPONSIVE DESIGN
    ========================================= */
 @media (max-width: 768px) {
-    .logo-title {
-        font-size: 2.5rem;
+    .title-gradient {
+        font-size: 2.8rem;
     }
-    section h2 {
-        font-size: 2rem;
+    .hero {
+        height: auto;
+        padding: 8rem 4% 4rem 4%;
     }
-    .photo-grid {
-        grid-template-columns: 1fr;
-    }
-    .activity-card {
-        padding: 2rem 1rem;
+    .nav-links {
+        display: none; /* Oculta menú en móvil para simplificar */
     }
 }
