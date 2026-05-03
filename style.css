@@ -1,0 +1,228 @@
+/* Paleta de colores inspirada en My Little Pony */
+:root {
+    --primary-pink: #ff69b4; /* Rosa brillante */
+    --secondary-purple: #dda0dd; /* Morado claro */
+    --accent-blue: #add8e6; /* Azul cielo */
+    --background-pastel: #fff0f5; /* Rosa claro muy suave */
+    --text-color: #4a4a4a;
+    --white: #ffffff;
+    --gold: #ffd700;
+}
+
+body {
+    font-family: 'Comic Sans MS', 'Cursive', sans-serif; /* Fuente lúdica */
+    background: linear-gradient(to bottom, var(--background-pastel) 0%, var(--white) 100%);
+    margin: 0;
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+header {
+    background: linear-gradient(135deg, var(--secondary-purple) 0%, var(--primary-pink) 100%);
+    padding: 40px 20px;
+    text-align: center;
+    border-bottom: 5px solid var(--accent-blue);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.logo-title {
+    color: var(--white);
+    font-size: 3rem;
+    margin: 0;
+    text-shadow: 3px 3px 0 var(--text-color), -1px -1px 0 var(--white); /* Efecto de purpurina */
+}
+
+.subtitle {
+    color: var(--white);
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    color: var(--primary-pink);
+    border-bottom: 2px dashed var(--accent-blue);
+    display: inline-block;
+    padding-bottom: 5px;
+    margin-top: 40px;
+}
+
+p {
+    margin-bottom: 20px;
+}
+
+/* Sección de Galería */
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin-top: 30px;
+}
+
+.photo-card {
+    background: var(--white);
+    border-radius: 20px;
+    box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    text-align: left;
+    margin: 0;
+}
+
+.photo-card:hover {
+    transform: translateY(-5px);
+}
+
+.photo-frame {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover; /* Recorta la foto para que encaje */
+}
+
+/* Marcos con forma */
+.star-frame::after {
+    content: '';
+    position: absolute;
+    top: 5px; right: 5px; bottom: 5px; left: 5px;
+    border: 5px dashed var(--gold);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.heart-frame::after {
+    content: '';
+    position: absolute;
+    top: 5px; right: 5px; bottom: 5px; left: 5px;
+    border: 5px solid var(--primary-pink);
+    border-radius: 20px;
+    pointer-events: none;
+}
+
+.magic-frame {
+    position: relative;
+    animation: glow-animation 2s infinite alternate;
+}
+
+@keyframes glow-animation {
+    0% {
+        box-shadow: 0 0 10px rgba(173, 216, 230, 0.5);
+    }
+    100% {
+        box-shadow: 0 0 20px rgba(173, 216, 230, 1);
+    }
+}
+
+figcaption {
+    padding: 15px;
+    font-size: 0.95rem;
+}
+
+.pony-name {
+    color: var(--primary-pink);
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Sección de Personajes fakes */
+.pony-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+.pony-card {
+    background: var(--white);
+    border-radius: 20px;
+    border: 3px solid var(--accent-blue);
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.pony-card img {
+    border-radius: 50%;
+    margin-bottom: 10px;
+    border: 5px solid var(--secondary-purple);
+}
+
+.pony-card h3 {
+    color: var(--secondary-purple);
+    margin-top: 0;
+}
+
+/* Botón Mágico */
+.activities {
+    text-align: center;
+    margin-top: 50px;
+}
+
+.activity-card {
+    background: linear-gradient(to right, var(--accent-blue) 0%, var(--secondary-purple) 100%);
+    padding: 30px;
+    border-radius: 30px;
+    color: var(--white);
+    border: 3px solid var(--white);
+}
+
+.magic-button {
+    background: var(--primary-pink);
+    color: var(--white);
+    border: none;
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: background 0.3s ease, transform 0.1s ease;
+    margin-top: 20px;
+}
+
+.magic-button:hover {
+    background: var(--secondary-purple);
+}
+
+.magic-button:active {
+    transform: translateY(2px);
+}
+
+footer {
+    background-color: var(--background-pastel);
+    padding: 20px;
+    text-align: center;
+    margin-top: 50px;
+    border-top: 2px dashed var(--accent-blue);
+    font-size: 0.9rem;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .logo-title {
+        font-size: 2.2rem;
+    }
+    .photo-grid {
+        grid-template-columns: 1fr;
+    }
+    .pony-flex {
+        flex-direction: column;
+        align-items: center;
+    }
+    .pony-card {
+        width: 100%;
+        max-width: 300px;
+    }
+}
