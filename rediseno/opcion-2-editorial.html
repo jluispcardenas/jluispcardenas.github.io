@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Para Kai y Cele · Diario familiar</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#f4f1ec;--ink:#1c1a17;--muted:#77706a;--line:#d9d2c7;--accent:#9c4a2f}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--ink);font-family:'Inter',sans-serif;font-size:16px;line-height:1.7}
+  img{display:block;width:100%;height:100%;object-fit:cover}
+  a{color:inherit;text-decoration:none}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .wrap{max-width:1240px;margin:0 auto;padding:0 40px}
+  .eyebrow{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);font-weight:500}
+
+  header.top{display:flex;justify-content:space-between;align-items:center;padding:26px 0;border-bottom:1px solid var(--line)}
+  .logo{font-family:'Cormorant Garamond';font-size:1.7rem;font-weight:600;letter-spacing:.02em}
+  .logo i{color:var(--accent)}
+  header.top nav{display:flex;gap:34px}
+  header.top nav a{font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)}
+  header.top nav a:hover{color:var(--ink)}
+
+  /* hero */
+  .hero{display:grid;grid-template-columns:5fr 7fr;gap:60px;padding:70px 0 90px;align-items:end}
+  .hero h1{font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(3.2rem,7vw,6.4rem);line-height:.95;letter-spacing:-.02em;margin:22px 0 30px}
+  .hero h1 i{color:var(--accent)}
+  .hero p{color:var(--muted);max-width:28em}
+  .hero .meta{display:flex;gap:40px;margin-top:40px;padding-top:24px;border-top:1px solid var(--line)}
+  .hero .meta b{display:block;font-family:'Cormorant Garamond';font-size:2.2rem;font-weight:500;line-height:1}
+  .hero .img{height:640px;position:relative}
+  .hero .img figcaption{position:absolute;left:-1px;bottom:-1px;background:var(--bg);padding:14px 22px 0 0;font-size:.8rem;color:var(--muted);font-style:italic;font-family:'Cormorant Garamond';font-size:1.1rem}
+
+  .chapter{display:flex;align-items:baseline;gap:24px;padding:26px 0;border-top:1px solid var(--ink);margin-bottom:60px}
+  .chapter .n{font-family:'Cormorant Garamond';font-size:1.1rem;color:var(--accent)}
+  .chapter h2{font-family:'Cormorant Garamond';font-weight:400;font-size:clamp(2.2rem,4vw,3.4rem);line-height:1}
+  .chapter .eyebrow{margin-left:auto}
+  section{padding:40px 0 110px}
+
+  /* portraits */
+  .portraits{display:grid;grid-template-columns:1fr 1fr;gap:60px}
+  .portrait .ph{aspect-ratio:4/5;overflow:hidden;margin-bottom:24px}
+  .portrait .ph img{transition:transform 1.2s}
+  .portrait:hover .ph img{transform:scale(1.04)}
+  .portrait h3{font-family:'Cormorant Garamond';font-weight:500;font-size:2.4rem;line-height:1.1}
+  .portrait h3 i{color:var(--muted);font-weight:400}
+  .portrait p{color:var(--muted);margin-top:8px;max-width:30em}
+  .portrait:nth-child(2){margin-top:120px}
+
+  /* letter */
+  .letter{display:grid;grid-template-columns:4fr 8fr;gap:80px}
+  .letter aside .ph{aspect-ratio:3/4;overflow:hidden;position:sticky;top:30px}
+  .letter .body p{font-family:'Cormorant Garamond';font-size:1.6rem;line-height:1.55;margin-bottom:1.1em}
+  .letter .body p:first-child::first-letter{float:left;font-size:5.4rem;line-height:.8;padding:8px 12px 0 0;color:var(--accent)}
+  .pull{font-family:'Cormorant Garamond';font-style:italic;font-size:2.4rem!important;line-height:1.2!important;border-left:2px solid var(--accent);padding-left:28px;margin:40px 0!important}
+  .sig{margin-top:30px;display:flex;align-items:center;gap:16px}
+  .sig span{height:1px;width:50px;background:var(--ink)}
+  .others{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);margin-top:70px;border:1px solid var(--line)}
+  .others div{background:var(--bg);padding:30px}
+  .others h4{font-family:'Cormorant Garamond';font-size:1.7rem;font-weight:500}
+  .others p{color:var(--muted);font-size:.92rem}
+
+  /* gallery */
+  .grid{display:grid;grid-template-columns:repeat(12,1fr);grid-auto-rows:110px;gap:16px}
+  .grid figure{overflow:hidden;position:relative}
+  .grid figure img{transition:transform 1s}
+  .grid figure:hover img{transform:scale(1.05)}
+  .g1{grid-column:1/6;grid-row:span 4}
+  .g2{grid-column:6/9;grid-row:span 2}
+  .g3{grid-column:9/13;grid-row:span 3}
+  .g4{grid-column:6/9;grid-row:span 3}
+  .g5{grid-column:9/13;grid-row:span 2}
+  .g6{grid-column:1/4;grid-row:span 4}
+  .g7{grid-column:4/6;grid-row:span 4}
+  .g8{grid-column:6/13;grid-row:span 3}
+
+  .quote-band{background:var(--ink);color:var(--bg);padding:120px 0;text-align:center}
+  .quote-band p{font-family:'Cormorant Garamond';font-style:italic;font-size:clamp(2rem,4.5vw,3.6rem);line-height:1.15;max-width:900px;margin:0 auto}
+  .quote-band a{display:inline-block;margin-top:40px;border:1px solid rgba(244,241,236,.4);padding:14px 28px;font-size:.75rem;letter-spacing:.2em;text-transform:uppercase}
+  .quote-band a:hover{background:var(--bg);color:var(--ink)}
+
+  footer{padding:40px 0;display:flex;justify-content:space-between;color:var(--muted);font-size:.85rem}
+
+  @media (max-width:900px){
+    .wrap{padding:0 22px}
+    header.top nav{display:none}
+    .hero,.portraits,.letter{grid-template-columns:1fr;gap:40px}
+    .hero .img{height:460px}
+    .portrait:nth-child(2){margin-top:0}
+    .letter aside .ph{position:static}
+    .grid{grid-auto-rows:80px}
+    .chapter .eyebrow{display:none}
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="top">
+    <a class="logo" href="#">Kai <i>&amp;</i> Cele</a>
+    <nav><a href="#hijas">Ellas</a><a href="#cartas">Cartas</a><a href="#recuerdos">Recuerdos</a></nav>
+    <span class="eyebrow">Vol. VII · 2026</span>
+  </header>
+
+  <section class="hero" style="padding-bottom:110px">
+    <div>
+      <span class="eyebrow">Un diario familiar</span>
+      <h1>Nunca paren de <i>explorar.</i></h1>
+      <p>Un compendio de pequeñas cartas y fotografías que pensamos dejar a través de los años. Para Kaitlyn y Celeste, como un recordatorio de cuánto las amamos.</p>
+      <div class="meta">
+        <div><b>2</b><span class="eyebrow">Hijas</span></div>
+        <div><b>3</b><span class="eyebrow">Cartas</span></div>
+        <div><b>∞</b><span class="eyebrow">Recuerdos</span></div>
+      </div>
+    </div>
+    <figure class="img">
+      <img src="../images/p-8.jpeg" alt="Kai y Cele abrazadas">
+      <figcaption>Kai y Cele, inseparables.</figcaption>
+    </figure>
+  </section>
+
+  <section id="hijas">
+    <div class="chapter"><span class="n">I.</span><h2>Nuestras hijas</h2><span class="eyebrow">Retratos</span></div>
+    <div class="portraits">
+      <article class="portrait">
+        <div class="ph"><img src="../images/p-10.jpeg" alt="Kaitlyn"></div>
+        <span class="eyebrow">La mayor</span>
+        <h3>Kaitlyn Haley <i>— Kai</i></h3>
+        <p>Curiosa, valiente y protectora. La primera en preguntar “¿por qué?” y la última en rendirse.</p>
+      </article>
+      <article class="portrait">
+        <div class="ph"><img src="../images/pp-6.jpeg" alt="Celeste"></div>
+        <span class="eyebrow">La menor</span>
+        <h3>Celeste Paulina <i>— Cele</i></h3>
+        <p>Alegría pura y ocurrencias sin fin. Su risa es la banda sonora de la casa.</p>
+      </article>
+    </div>
+  </section>
+
+  <section id="cartas">
+    <div class="chapter"><span class="n">II.</span><h2>Cartas para el futuro</h2><span class="eyebrow">De Papá</span></div>
+    <div class="letter">
+      <aside><div class="ph"><img src="../images/pp-13.jpeg" alt="Papá con sus hijas"></div></aside>
+      <div class="body">
+        <p>Hagan siempre lo que desde el corazón les apasione. El trabajo se enriquece y la vida se aligera cuando hacemos lo que amamos.</p>
+        <p>Arriésguense, siempre inténtenlo, tomen decisiones, y si alguna vez llegasen a fallar: vuelvan a arriesgarse.</p>
+        <p class="pull">“Los amigos pasan, los amores caducan, pero su familia siempre estará a su lado.”</p>
+        <p>Cuestionen todo, cuestiónenme a mí. No den nada por dicho. Siempre defiendan sus ideales con la frente alta.</p>
+        <p>Vivan su vida plenamente, conozcan, viajen, enamórense, cometan errores y solo lleguen a asentarse cuando hayan visto suficiente.</p>
+        <div class="sig"><span></span><em class="serif" style="font-size:1.4rem">Papá</em></div>
+        <div class="others">
+          <div><span class="eyebrow">Próximamente</span><h4>Carta de Mamá</h4><p>En redacción…</p></div>
+          <div><span class="eyebrow">Próximamente</span><h4>Carta de Abuela Elsa</h4><p>Pronto aquí.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="recuerdos">
+    <div class="chapter"><span class="n">III.</span><h2>Nuestros recuerdos</h2><span class="eyebrow">Galería</span></div>
+    <div class="grid">
+      <figure class="g1"><img src="../images/pp-24.jpeg" alt=""></figure>
+      <figure class="g2"><img src="../images/p-15.jpeg" alt=""></figure>
+      <figure class="g3"><img src="../images/p-7.jpeg" alt=""></figure>
+      <figure class="g4"><img src="../images/pp-15.jpeg" alt=""></figure>
+      <figure class="g5"><img src="../images/pp-20.jpeg" alt=""></figure>
+      <figure class="g6"><img src="../images/p-19.jpeg" alt=""></figure>
+      <figure class="g7"><img src="../images/pp-23.jpeg" alt=""></figure>
+      <figure class="g8"><img src="../images/p-11.jpeg" alt=""></figure>
+    </div>
+  </section>
+</div>
+
+<div class="quote-band">
+  <span class="eyebrow" style="color:#a9a197">Experiencias inolvidables</span>
+  <p style="margin-top:20px">“Prepárense, nunca paren de aprender. Para que cuando las oportunidades lleguen, estén listas.”</p>
+  <a href="https://www.youtube.com/watch?v=Sm5FFdT5FsA" target="_blank">▶ Ver el video</a>
+</div>
+
+<div class="wrap">
+  <footer><span class="serif" style="font-size:1.2rem;color:var(--ink)">Papá, Mamá y Familia</span><span>diosyfamilia.com</span></footer>
+</div>
+
+</body>
+</html>
