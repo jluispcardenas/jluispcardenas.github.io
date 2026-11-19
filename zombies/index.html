@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+<title>Zombi Rescate · Aventura en la Mansión</title>
+<meta name="description" content="Juego 3D para niños: cura a los zombis con tu lanzaburbujas y encuentra las llaves doradas para escapar de la mansión.">
+<meta name="theme-color" content="#2a2148">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Zombi Rescate">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="game.css">
+</head>
+<body>
+  <canvas id="game" aria-label="Juego Zombi Rescate"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" hidden>
+    <div class="panel" id="lifePanel">
+      <div id="hearts"></div>
+      <span id="lvl">Nv 1</span>
+    </div>
+    <div class="panel" id="objective">🔑 Encuentra las llaves doradas (0/3)</div>
+    <canvas id="minimap" width="162" height="120" aria-label="Minimapa"></canvas>
+    <div id="score">⭐ 0</div>
+    <div class="panel" id="ammo">
+      <span class="bubble-icon"></span>
+      <span id="ammoCount">30</span><small>/ <span id="ammoMax">60</span></small>
+    </div>
+    <div id="crosshair"><i></i></div>
+    <div id="msg"></div>
+    <div id="popups"></div>
+    <button id="pauseBtn" class="icon-btn" aria-label="Pausa">❚❚</button>
+    <button id="muteBtn" class="icon-btn" aria-label="Sonido">🔊</button>
+  </div>
+  <div id="damage"></div>
+
+  <!-- Controles táctiles -->
+  <div id="touch" hidden>
+    <div id="joyBase"><div id="joyKnob"></div></div>
+    <button id="fireBtn" aria-label="Disparar burbujas"><span class="bubble-icon big"></span></button>
+  </div>
+
+  <!-- Pantallas -->
+  <section class="screen" id="startScreen">
+    <div class="card">
+      <div class="logo">🧟‍♂️🫧</div>
+      <h1>Zombi Rescate</h1>
+      <p class="story">¡Un estornudo mágico convirtió a los vecinos de la <b>Mansión Lunares</b> en zombis! Cúralos con tu <b>lanzaburbujas</b> y encuentra las <b>3 llaves doradas</b> para abrir la puerta de salida.</p>
+      <div class="controls">
+        <div class="ctl desktop"><b>Computadora</b><br>WASD / flechas: moverte · Shift: correr<br>Ratón: apuntar · Clic: burbujas · Esc: pausa</div>
+        <div class="ctl mobile"><b>Celular / tablet</b><br>Joystick izquierdo: moverte<br>Desliza a la derecha: apuntar · Botón 🫧: disparar</div>
+      </div>
+      <button class="big-btn" id="playBtn">¡A jugar!</button>
+      <p class="gpu" id="gpuInfo">Acelerado por GPU · WebGL2</p>
+    </div>
+  </section>
+
+  <section class="screen" id="pauseScreen" hidden>
+    <div class="card">
+      <h2>⏸️ Pausa</h2>
+      <p>Respira hondo, héroe. Los zombis te esperan.</p>
+      <button class="big-btn" id="resumeBtn">Continuar</button>
+      <button class="link-btn" id="restartBtn">Reiniciar nivel</button>
+    </div>
+  </section>
+
+  <section class="screen" id="winScreen" hidden>
+    <div class="card">
+      <div class="logo">🏆</div>
+      <h2>¡Mansión rescatada!</h2>
+      <div class="stars" id="winStars">⭐⭐⭐</div>
+      <p id="winText"></p>
+      <button class="big-btn" id="nextBtn">Siguiente nivel ➜</button>
+    </div>
+  </section>
+
+  <section class="screen" id="loseScreen" hidden>
+    <div class="card">
+      <div class="logo">💚🧟</div>
+      <h2>¡Uy! Demasiados abrazos pegajosos</h2>
+      <p id="loseText">Los zombis te alcanzaron. ¡Pero un héroe nunca se rinde!</p>
+      <button class="big-btn" id="retryBtn">Intentar otra vez</button>
+    </div>
+  </section>
+
+  <section class="screen" id="errorScreen" hidden>
+    <div class="card">
+      <h2>😢 Tu navegador no puede mostrar 3D</h2>
+      <p>Este juego necesita WebGL (aceleración por GPU). Prueba con Chrome, Edge, Firefox o Safari actualizados.</p>
+    </div>
+  </section>
+
+  <script type="module" src="game.js"></script>
+</body>
+</html>

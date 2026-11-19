@@ -1,0 +1,113 @@
+:root{
+  --panel:rgba(16,10,34,.62);
+  --gold:#ffcc33;
+  --text:#fff;
+  --font:"Fredoka","Trebuchet MS",system-ui,sans-serif;
+  --safe-t:env(safe-area-inset-top,0px);
+  --safe-b:env(safe-area-inset-bottom,0px);
+  --safe-l:env(safe-area-inset-left,0px);
+  --safe-r:env(safe-area-inset-right,0px);
+}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html,body{margin:0;height:100%;overflow:hidden;background:#1d1733;color:var(--text);font-family:var(--font);
+  user-select:none;-webkit-user-select:none;touch-action:none;overscroll-behavior:none}
+#game{position:fixed;inset:0;width:100%;height:100%;display:block}
+[hidden]{display:none!important}
+
+/* ---------- HUD ---------- */
+#hud{position:fixed;inset:0;pointer-events:none}
+.panel{position:absolute;background:var(--panel);border-radius:16px;padding:8px 14px;backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px)}
+#lifePanel{top:calc(12px + var(--safe-t));left:calc(12px + var(--safe-l));display:flex;align-items:center;gap:10px}
+#hearts{display:flex;gap:4px}
+#hearts svg{width:30px;height:27px;transition:transform .2s}
+#hearts svg.lost{opacity:.9}
+#hearts svg.pulse{animation:pulse .5s}
+#lvl{color:var(--gold);font-weight:700;font-size:20px}
+#objective{top:calc(12px + var(--safe-t));left:50%;transform:translateX(-50%);font-size:17px;font-weight:600;white-space:nowrap;text-align:center}
+#objective.done{background:rgba(40,150,80,.75)}
+#minimap{position:absolute;top:calc(12px + var(--safe-t));right:calc(12px + var(--safe-r));width:162px;height:120px;
+  background:var(--panel);border:2px solid rgba(255,255,255,.35);border-radius:14px}
+#score{position:absolute;left:calc(16px + var(--safe-l));bottom:calc(14px + var(--safe-b));font-size:26px;font-weight:700;color:var(--gold);
+  text-shadow:0 2px 0 #000,0 0 8px #000}
+#ammo{right:calc(14px + var(--safe-r));bottom:calc(14px + var(--safe-b));display:flex;align-items:center;gap:10px;font-size:32px;font-weight:700}
+#ammo small{font-size:17px;color:#b9e8ff}
+#ammo.low #ammoCount{color:#ff8080;animation:pulse 1s infinite}
+.bubble-icon{display:inline-block;width:34px;height:34px;border-radius:50%;
+  background:radial-gradient(circle at 35% 35%,#fff 0 12%,rgba(158,240,255,.8) 40%,rgba(63,182,255,.45) 100%);border:2px solid #fff}
+.bubble-icon.big{width:46px;height:46px}
+#crosshair{position:absolute;left:50%;top:50%;width:34px;height:34px;margin:-17px 0 0 -17px;border:3px solid #fff;border-radius:50%;
+  box-shadow:0 0 0 1px rgba(0,0,0,.4),inset 0 0 0 1px rgba(0,0,0,.4);transition:transform .08s,border-color .15s}
+#crosshair i{position:absolute;left:50%;top:50%;width:6px;height:6px;margin:-3px 0 0 -3px;border-radius:50%;background:#fff}
+#crosshair.on{border-color:#7dff6b;transform:scale(.8)}
+#crosshair.on i{background:#7dff6b}
+#crosshair.kick{transform:scale(1.25)}
+#msg{position:absolute;left:50%;top:22%;transform:translateX(-50%);font-size:24px;font-weight:700;text-align:center;
+  text-shadow:0 2px 0 #2a1d00,0 0 10px #000;opacity:0;transition:opacity .3s;white-space:nowrap}
+#msg.show{opacity:1}
+#popups{position:absolute;inset:0;overflow:hidden}
+.pop{position:absolute;transform:translate(-50%,-50%);font-weight:700;font-size:26px;color:#fff;white-space:nowrap;
+  -webkit-text-stroke:5px #2a1d00;paint-order:stroke fill;animation:floatUp 1.3s ease-out forwards}
+.pop.gold{color:var(--gold)}
+.pop.green{color:#7dff6b}
+.icon-btn{pointer-events:auto;position:absolute;width:44px;height:44px;border-radius:50%;border:none;background:var(--panel);color:#fff;
+  font-size:18px;font-family:var(--font);cursor:pointer}
+#pauseBtn{top:calc(140px + var(--safe-t));right:calc(12px + var(--safe-r))}
+#muteBtn{top:calc(140px + var(--safe-t));right:calc(64px + var(--safe-r))}
+#damage{position:fixed;inset:0;pointer-events:none;background:radial-gradient(circle,transparent 45%,rgba(120,255,120,.55) 100%);opacity:0;transition:opacity .4s}
+#damage.hit{opacity:1;transition:none}
+
+/* ---------- Táctil ---------- */
+#touch{position:fixed;inset:0}
+#joyBase{position:absolute;width:130px;height:130px;margin:-65px 0 0 -65px;border-radius:50%;
+  background:rgba(255,255,255,.12);border:3px solid rgba(255,255,255,.35);left:110px;bottom:60px;top:auto;pointer-events:none}
+#joyBase.free{bottom:auto}
+#joyKnob{position:absolute;left:50%;top:50%;width:58px;height:58px;margin:-29px 0 0 -29px;border-radius:50%;background:rgba(255,255,255,.55);
+  box-shadow:0 4px 10px rgba(0,0,0,.3)}
+#fireBtn{position:absolute;right:calc(24px + var(--safe-r));bottom:calc(110px + var(--safe-b));width:96px;height:96px;border-radius:50%;
+  border:4px solid #fff;background:rgba(122,92,255,.75);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,.4)}
+#fireBtn.on{background:rgba(160,135,255,.95);transform:scale(.94)}
+
+/* ---------- Pantallas ---------- */
+.screen{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;padding:16px;
+  background:radial-gradient(circle at 50% 30%,rgba(90,60,160,.55),rgba(14,9,30,.88));z-index:10;overflow:auto}
+.card{background:linear-gradient(180deg,#4a3a73,#2a2148);border:3px solid var(--gold);border-radius:26px;padding:26px 28px;
+  max-width:560px;width:100%;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.55)}
+.logo{font-size:54px;line-height:1}
+h1{font-size:46px;margin:6px 0 4px;color:var(--gold);text-shadow:0 4px 0 #6b3f00;letter-spacing:1px}
+h2{font-size:30px;margin:8px 0;color:var(--gold)}
+.story{font-size:17px;line-height:1.45;color:#eee6ff}
+.controls{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0;font-size:14px;line-height:1.5;color:#d8cff5}
+.ctl{background:rgba(0,0,0,.25);border-radius:14px;padding:10px}
+.big-btn{font-family:var(--font);font-size:26px;font-weight:700;color:#2a1d00;background:linear-gradient(180deg,#ffe36b,#ffb800);
+  border:none;border-radius:18px;padding:12px 40px;cursor:pointer;box-shadow:0 6px 0 #a06800;margin-top:8px}
+.big-btn:active{transform:translateY(4px);box-shadow:0 2px 0 #a06800}
+.link-btn{display:block;margin:16px auto 0;background:none;border:none;color:#cfc7ea;font-family:var(--font);font-size:16px;text-decoration:underline;cursor:pointer}
+.gpu{font-size:13px;color:#a99fd0;margin:14px 0 0}
+.stars{font-size:44px;letter-spacing:6px}
+.stars .off{filter:grayscale(1) brightness(.5)}
+
+@keyframes floatUp{0%{opacity:0;margin-top:10px}15%{opacity:1}100%{opacity:0;margin-top:-70px}}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+
+@media (max-width:700px),(max-height:500px){
+  #objective{font-size:13px;padding:6px 10px;top:calc(60px + var(--safe-t))}
+  #minimap{width:120px;height:89px}
+  #pauseBtn,#muteBtn{top:calc(108px + var(--safe-t))}
+  #hearts svg{width:24px;height:22px}
+  #lvl{font-size:16px}
+  #score{font-size:20px;bottom:auto;top:calc(64px + var(--safe-t))}
+  #ammo{bottom:calc(220px + var(--safe-b));font-size:24px;padding:6px 10px}
+  .controls{grid-template-columns:1fr}
+  h1{font-size:36px}
+  .card{padding:18px}
+}
+@media (max-height:500px) and (orientation:landscape){
+  #objective{top:calc(12px + var(--safe-t))}
+  #score{top:auto;bottom:calc(14px + var(--safe-b));left:50%;transform:translateX(-50%)}
+  #ammo{bottom:calc(14px + var(--safe-b));right:calc(140px + var(--safe-r))}
+  #fireBtn{bottom:calc(30px + var(--safe-b))}
+}
+@media (max-width:700px) and (orientation:portrait){
+  #objective{top:calc(162px + var(--safe-t));white-space:normal;max-width:92%;width:max-content}
+  #msg{top:30%;white-space:normal;width:90%;font-size:20px}
+}
